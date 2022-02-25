@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>test notification</h1>
+    <script>
+        // Function
+        function showNotification() {
+            const notification = new Notification ("คุณมีข้อความใหม่",{
+                body: "ยินดีที่ได้รู้จัก"
+            });
+            notification.onclick = (e) => {
+                window.location.href = "https://google.com"
+            }
+        }
+        // Permission & Call function
+        console.log(Notification.permission);
+        if (Notification.permission === "granted") {
+            showNotification();
+        } else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(permission => {
+                console.log(permission);
+                if (permission === "granted") {
+                    showNotification();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
